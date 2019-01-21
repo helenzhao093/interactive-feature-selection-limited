@@ -1,0 +1,520 @@
+.root-div {
+    margin: 0 auto;
+    height: 100%;
+    background: #20232a;
+    width: 1000px;
+}
+
+.animate-right {
+    animation: animateright 0.4s;
+}
+
+.sidebar-card {
+    box-shadow: 0 2px 5px 0 rgba(0,0,0,0.16),0 2px 10px 0 rgba(0,0,0,0.12);
+}
+
+.sidebar-right {
+    right: 0px;
+    height: 100%;
+    width: 20%;
+    background-color: #ffffff;
+    position: fixed !important;
+    z-index: 1;
+    overflow: auto;
+}
+
+.sidebar-toggle {
+    float: right !important;
+    font-size: 40px !important;
+    border: none;
+    cursor: pointer;
+    background: #20232a;
+    color: #ffffff;
+}
+
+.help-icon-tooltip {
+    float: right;
+    color: white;
+    width: 20px;
+    text-align: center;
+    font-size: x-large;
+    margin-top: 18px;
+    position: relative;
+    white-space: pre-wrap;
+    fill: white;
+}
+
+.tooltip-text {
+    visibility: hidden;
+    width: 300px;
+    color: #fff;
+    text-align: left;
+    border-radius: 4px;
+    padding: 10px;
+    position: absolute;
+    z-index: 1;
+    background-color: black;
+    right: 0px;
+    font-size: 12px;
+    top: 44px;
+    opacity: 0;
+}
+
+.help-icon-tooltip:hover .tooltip-text {
+    visibility: visible;
+    opacity: 0.7;
+}
+
+.sidebar-item {
+    width: 100%;
+    display: block;
+    padding: 8px 16px;
+    text-align: left;
+    border: none;
+    white-space: normal;
+    float: none;
+    outline: 0;
+    cursor: pointer;
+    font-size: 1em;
+}
+
+.sidebar-item p {
+    margin: 0;
+    font-size:0.8em;
+}
+
+.grid-container {
+    display: grid;
+    grid-template-columns: 500px 150px 350px;
+}
+
+.grid-container-comparison {
+    display: grid;
+    grid-template-columns: 500px 500px;
+}
+
+.grid-item {
+    text-align: center;
+}
+
+/* TABS */
+.tabs {
+
+}
+
+.tab{
+  display: inline-block;
+  padding-right: 5px;
+  padding-left: 5px;
+  padding: 16px 30px;
+  cursor: default;
+    background: #20232a;
+    color: white;
+    font-size: 1em;
+}
+
+.tabs-active-content {
+    background: white;
+}
+
+.tab-link.active {
+    color: #61dafb;
+}
+
+.arrow {
+    transform: rotate(-45deg);
+    -webkit-transform: rotate(-45deg);
+    border: solid white;
+    border-width: 0 2px 2px 0;
+    display: inline-block;
+    padding: 10px;
+    vertical-align: middle;
+    width: 10px;
+    height: 10px;
+}
+
+/* TOOLS BAR */
+.tools-bar {
+    background: #f7f7f7;
+    height: 30px;
+    margin-bottom: 10px;
+    border-bottom-style: solid;
+    border-bottom-color: #757575;
+    border-bottom-width: .1em;
+    color: white;
+    font-size: small;
+    border-radius: 5px;
+}
+
+.tools-bar-help {
+    position: relative;
+    width: 12px;
+    float: left;
+    fill: lightgray;
+    text-align: center;
+    font-size: 14px;
+    top: 3px;
+    margin-right: 15px;
+    margin-left: 2px;
+    cursor: default;
+    z-index: 1;
+    height: 20px;
+}
+
+.legend-help {
+    float: right;
+    position: inherit;
+}
+
+.tools-bar-help.legend-help:hover .tools-bar-help-text {
+    visibility: visible;
+}
+
+.tools-bar-help:hover .tools-bar-help-text {
+    visibility: visible;
+}
+
+.tools-bar-help-text {
+    position: relative;
+    float: left;
+    color: black;
+    text-align: center;
+    font-size: 10px;
+    margin-right: 5px;
+    margin-left: 2px;
+    width: 150px;
+    left: -10px;
+    background: rgba(211,211,211, 0.8);
+    border-radius: 4px;
+    border: solid black 1px;
+    visibility: hidden;
+}
+
+.legend-helptext {
+    left: 22px;
+    top: -30px;
+}
+
+.action-button {
+    float:left;
+    background: #3367d6;
+    border-color: #3367d6;
+    cursor: pointer;
+}
+
+.add-edge {
+    background: #0071e0;
+}
+
+.tools-bar.right-button {
+    float: right;
+}
+
+.next-button {
+    background: #0071e0;
+    border-color: #0071e0;
+    cursor: pointer;
+}
+
+.previous-button {
+    background: gray;
+    border-color: lightgrey;
+    cursor: pointer;
+}
+
+/* FEATURE IMPORTANCE */
+.feature-node {
+    cursor: pointer;
+}
+
+.feature-node.active ellipse{
+    stroke: darkblue;
+
+    stroke-width: 2px;
+}
+
+.feature-axis text {
+    cursor: pointer;
+}
+
+/*graph */
+#graph {
+    position: absolute;
+}
+
+.causal-graph-container {
+    /*display: grid;
+    grid-template-columns: 800px 200px;
+    position: absolute; */
+}
+.causal-graph-container #graph{
+    /*margin-left: 200px;*/
+}
+
+.causal-graph-select-div {
+    float: left;
+    background: royalblue;
+    border-radius: 5px;
+    margin-left: 10px;
+}
+
+.causal-graph-select{
+    background: transparent;
+    color:white;
+    border: none;
+    font-size: 12px;
+    padding: 5px;
+    width: 140px;
+    height: 30px;
+    cursor: pointer;
+}
+
+.causal-graph-toolbar-span {
+
+    color: black;
+    float: left;
+    line-height: 30px;
+    vertical-align: middle;
+}
+
+.graph .node, .graph .edge {
+    cursor: pointer;
+}
+
+.graphline {
+  stroke-width: 3px;
+}
+
+path.link.hidden {
+  stroke-width: 0;
+}
+
+.histogram-div {
+  float:left;
+}
+
+.container {
+    position: relative;
+    padding-left: 35px;
+    margin-bottom: 12px;
+    cursor: pointer;
+    font-size: 22px;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+.container input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    height: 0;
+    width: 0;
+}
+
+.series-marker {
+    height: 1em;
+    width: 1em;
+    border-radius: 35%;
+    background-color: crimson;
+    display: inline-block;
+    margin-right: 4px;
+    margin-bottom: -0.16rem;
+}
+
+.legend  {
+    min-width: 200px;
+    display: inline-flex;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+    font-size: 16px;
+}
+
+.legend-left {
+    display: block;
+    text-align: left;
+}
+
+.cg-legend {
+    position: absolute;
+    margin-left: 20px;
+    margin-top: 500px;
+}
+
+.analysis-legend {
+    margin-left: 20px;
+}
+
+.legend p {
+    display:inline;
+    font-size: 0.8em;
+}
+
+.class-legend {
+    position: relative;
+    float: left;
+    min-width: 0px;
+}
+
+
+/* Clear floats after the columns */
+.row {
+    margin-bottom: 10px
+}
+
+.row:after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+.selected-edgeto path{
+  stroke: yellowgreen;
+    stroke-width: 0.2rem;
+}
+
+.selected-edgeto polygon{
+  fill: yellowgreen;
+  stroke: yellowgreen;
+}
+
+.selected-nodeto ellipse{
+    fill: yellowgreen;
+}
+
+.selected-edgefrom path{
+  stroke: #ffae42;
+    stroke-width: 0.2rem;
+}
+
+.selected-edgefrom polygon{
+  fill: #ffae42;
+  stroke: #ffae42;
+}
+
+.selected-nodefrom ellipse{
+    fill: #ffae42;
+}
+
+.selected-pathedge path {
+    stroke: yellow;
+    stroke-width: 0.2rem;
+}
+
+.selected-pathedge polygon {
+    fill: yellow;
+    stroke: yellow;
+}
+.selected-pathnode ellipse {
+    fill: yellow;
+}
+
+.ek-selected ellipse{
+  fill:yellow;
+}
+
+.selected-node ellipse{
+  fill: yellow;
+}
+
+.selected-spousenode ellipse{
+  fill: #0d98ba;
+}
+
+.selected-spouseedge path{
+  stroke: #0d98ba;
+    stroke-width: 0.2rem;
+}
+.selected-spouseedge polygon{
+  fill: #0d98ba;
+  stroke: #0d98ba;
+}
+
+.selected-pathto path{
+  stroke: orange;
+    stroke-width: 0.2rem;
+}
+.selected-pathto polygon{
+  fill: orange;
+  stroke: orange;
+}
+
+.selected-edge path, .selected-edge polygon{
+    fill: darkorange;
+    stroke:darkorange;
+    sroke-width:0.2rem;
+}
+
+.selected-edgenode ellipse{
+    fill: darkorange;
+}
+
+.removed {
+  display: none;
+}
+
+.active circle{
+  stroke: #000;
+  stroke-width: 2px;
+}
+
+.histogram-tooltip {
+    position: relative;
+    text-align: center;
+    width: 30px;
+    padding: 2px;
+    font: 10px sans-serif;
+    background: #555;
+    border: 0px;
+    border-radius: 8px;
+    pointer-events: none;
+    color: #fff;
+}
+
+.hidden {
+    visibility: hidden;
+}
+
+ul {
+    margin: 0;
+}
+
+* {
+    font-family: "Tahoma";
+}
+
+#graph-overlay {
+    margin-top: -10px;
+    width: 1000px;
+    height: 1000px;
+    position: fixed;
+    background: black;
+    z-index: 1;
+    opacity: 0.3;
+    font-size: 20px;
+}
+
+#overlay-info {
+    text-align: center;
+    color: white;
+    margin-top: 200px;
+    fill: white;
+}
+
+.confusion-matrix-container {
+}
+
+.confusion-matrix-title {
+    margin-left:450px;
+    font-size: 18px;
+    margin-bottom: 8px;
+}
+
+#matrix {
+    text-align: center;
+}
+
+.matrix-icon:hover .tools-bar-help-text {
+    visibility: visible;
+}
