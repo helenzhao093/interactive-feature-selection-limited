@@ -36,7 +36,7 @@ class AppInterface extends React.Component {
         nameToIndexMap: nameToIndexMap,
         helptext: helptext,
         activeTabIndex: 0,
-        featureSelectionMargin : {left: 10, right: 30, top: 20, bottom:10 },
+        featureSelectionMargin : { left: 10, right: 30, top: 20, bottom:10 },
         shouldInitializeSelection: true,
         isNewTrial: false,
         selectedFeatureSelection: -1,
@@ -168,9 +168,7 @@ class AppInterface extends React.Component {
         var allFeatureNames = features.map((feature) =>
             feature.name
         );
-        /*console.log(oldFeatureNames);
-        console.log(allFeatureNames);
-        console.log(currentFeatures);*/
+
         delete this.state.dragging[attrId];
         if (JSON.stringify(oldFeatureNames) != JSON.stringify(allFeatureNames)) {
             const stopIndex = allFeatureIndexes.indexOf(features.length - 1);
@@ -178,11 +176,13 @@ class AppInterface extends React.Component {
             allFeatureNames.splice(stopIndex);
             var xScaleInfo = this.calculateFeatureSelectionXScale(features);
             this.calculateScores({ features: allFeatureIndexes, names: allFeatureNames });
+
             if (this.state.isNewTrial) {
                 this.state.featureSelectionHistory.push({
                     xScale: xScaleInfo.xScale,
                     xScaleDomain: xScaleInfo.xScaleDomain,
                     features: features,
+                    selectedFeatureNames: allFeatureNames,
                     featureCoordinatesSize: [xScaleInfo.featureSelectionTotalWidth, 500],
                 });
 
@@ -192,17 +192,13 @@ class AppInterface extends React.Component {
                         xScale: xScaleInfo.xScale,
                         xScaleDomain: xScaleInfo.xScaleDomain,
                         features: features,
+                        selectedFeatureNames: allFeatureNames,
                         featureCoordinatesSize: [xScaleInfo.featureSelectionTotalWidth, 500],
                     }
                 );
 
             }
 
-            client.recordEvent('feature_selection_exploration', {
-                user: userID,
-                datasetName: this.state.datasetName,
-                MI: this.state.MICurrent,
-            });
             this.setState({
                 isNewTrial: false,
                 selectedFeatureSelection: this.state.featureSelectionHistory.length - 1,
@@ -237,10 +233,10 @@ class AppInterface extends React.Component {
 
         client.recordEvent('classify_results', {
            user: userID,
-           datasetName: this.state.datasetName,
            MI: this.state.MICurrent,
            accuracy: +data.accuracy.toFixed(3),
            selectedFeatures: allFeatureNames,
+           confusionMatrix: data.confusionMatrix //
         });
 
         this.setState({
@@ -290,6 +286,13 @@ class AppInterface extends React.Component {
           console.log(data);
           var axisLength = this.state.xAxisLength;
           //return { MICurrent: parseFloat(data.MI.toFixed(3)), xAxisLength : axisLength }
+
+          client.recordEvent('feature_selection_exploration', {
+              user: userID,
+              selectedFeatures: this.state.featureSelectionHistory[this.state.featureSelectionHistory.length - 1].selectedFeatureNames,
+              MI: parseFloat(data.MI.toFixed(3)),
+          });
+
           this.setState({
             MICurrent : parseFloat(data.MI.toFixed(3)),
             xAxisLength : axisLength
@@ -348,7 +351,7 @@ class AppInterface extends React.Component {
       selectedFeatureSelection = this.state.featureSelectionHistory[0];
       this.state.selectedFeatureSelection = 0;
     }
-    console.log(this.state.MICurrent)
+    console.log(this.state.featureSelectionHistory)
 
     return (
         <div className={'root-div'}>
