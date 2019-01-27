@@ -231,7 +231,7 @@ class AppInterface extends React.Component {
 
         let lastFeatureSelection = this.state.featureSelectionHistory[this.state.featureSelectionHistory.length - 1];
 
-        client.recordEvent('classify_results', {
+        client.recordEvent('LS_classify_results', {
            user: userID,
            MI: this.state.MICurrent,
            accuracy: +data.accuracy.toFixed(3),
@@ -287,7 +287,7 @@ class AppInterface extends React.Component {
           var axisLength = this.state.xAxisLength;
           //return { MICurrent: parseFloat(data.MI.toFixed(3)), xAxisLength : axisLength }
 
-          client.recordEvent('feature_selection_exploration', {
+          client.recordEvent('LS_feature_selection_exploration', {
               user: userID,
               selectedFeatures: this.state.featureSelectionHistory[this.state.featureSelectionHistory.length - 1].selectedFeatureNames,
               MI: parseFloat(data.MI.toFixed(3)),
@@ -324,10 +324,28 @@ class AppInterface extends React.Component {
         console.log(classifierNum);
         console.log(trialNum);
         if (classifierNum == 1) {
+          client.recordEvent('LS_compare_classifier', {
+            user: userID,
+            trial1: trialNum,
+            trial1Features: this.state.featureSelectionHistory[trialNum].selectedFeatureNames,
+            trial2: this.state.selectedTrial2,
+            accuracy1: this.state.metrics.accuracy[trialNum],
+            accuracy2: this.state.metrics.accuracy[this.state.selectedTrial2],
+            trial2Features: this.state.featureSelectionHistory[this.state.selectedTrial2].selectedFeatureNames
+          });
             this.setState({
                 selectedTrial1: trialNum
             })
         } else {
+          client.recordEvent('LS_compare_classifier', {
+            user: userID,
+            trial1: this.state.selectedTrial1,
+            trial1Features: this.state.featureSelectionHistory[this.state.selectedTrial1].selectedFeatureNames,
+            trial2Features: this.state.featureSelectionHistory[trialNum].selectedFeatureNames,
+            trial2: trialNum,
+            accuracy1: this.state.metrics.accuracy[this.state.selectedTrial1],
+            accuracy2: this.state.metrics.accuracy[trialNum]
+          });
             this.setState({
                 selectedTrial2: trialNum
             })
@@ -351,7 +369,6 @@ class AppInterface extends React.Component {
       selectedFeatureSelection = this.state.featureSelectionHistory[0];
       this.state.selectedFeatureSelection = 0;
     }
-    console.log(this.state.featureSelectionHistory)
 
     return (
         <div className={'root-div'}>

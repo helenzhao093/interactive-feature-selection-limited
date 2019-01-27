@@ -98,7 +98,6 @@ class CompareClassifiers extends React.Component {
     }
 
     render() {
-        console.log(this.props);
         let selectedTrial1 = this.props.selectedTrial1;
         let confusionMatrix = this.props.confusionMatrices[selectedTrial1];
         let confusionMatrixNormalized = this.props.confusionMatricesNormalized[selectedTrial1];
