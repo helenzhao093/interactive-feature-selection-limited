@@ -34,7 +34,7 @@ class CheckboxMultiSelect extends React.Component {
        this.props.options[option].TP.display == true
     )
     return (
-        <div>
+        <div style={{position: "relative", float: "left"}}>
             {Object.keys(this.props.options).map((option) =>
               <CheckboxOption value={option} isChecked={this.props.options[option].TP.display}
                 onChange={() => this.props.handleChange(option, this.props.options[option].TP.display)}>

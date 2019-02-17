@@ -12,6 +12,13 @@ class AppInterface extends React.Component {
           nameToIndexMap[feature.name] = feature.index
       });
 
+    var ROCDisplayClass = {};
+    this.props.classNames.map((label) => {
+      ROCDisplayClass[label] = {}
+      ROCDisplayClass[label].TP = {}
+      ROCDisplayClass[label].TP.display = true
+    });
+
     let helptext = [
         "-Each axis represents a feature. \n" +
         "-Each line represents an example. The example intersects each feature axis at the value for the feature.  \n" +
@@ -48,6 +55,7 @@ class AppInterface extends React.Component {
         MICurrent: 0,
         metrics: {
             accuracy: [],
+            accuracyTrain: []
         },
         confusionMatrix: [],
         confusionMatrixNormalized: [],
@@ -56,7 +64,8 @@ class AppInterface extends React.Component {
         ],
         consistencyGraphLegendMax: 1,
         metricsGraphLegend: [
-            { value: "accuracy", color: '#3690c0', helptext: "% of correct predictions " } //,
+            { value: "accuracy", color: '#3690c0', helptext: "% of correct predictions " },
+            { value: "train accuracy", color: '#d0d1e6', helptext: "% of correctly predicted train ex. " }
         ],
         classDisplay: this.props.features.classDisplay,
         featureData: {
@@ -73,7 +82,9 @@ class AppInterface extends React.Component {
         showInfo: false,
         selectedTrial1: -1,
         selectedTrial2: -1,
-        trials: []
+        trials: [],
+        rocCurve: [],
+        ROCDisplayClass: ROCDisplayClass
     };
       /* FEATURE SELECTION METHODS */
     this.calculateFeatureSelectionXScale = this.calculateFeatureSelectionXScale.bind(this);
@@ -86,6 +97,7 @@ class AppInterface extends React.Component {
     this.showInfoTrue = this.showInfoTrue.bind(this);
     this.showInfoFalse = this.showInfoFalse.bind(this);
     this.changeDisplayTrial = this.changeDisplayTrial.bind(this);
+    this.changeROCClassDisplay = this.changeROCClassDisplay.bind(this);
   }
 
   componentDidMount() {
@@ -224,6 +236,8 @@ class AppInterface extends React.Component {
         return response.json();
       }).then(data => {
         this.state.MI.push(this.state.MICurrent);
+        this.state.rocCurve.push(data.rocCurve);
+        this.state.metrics.accuracyTrain.push(parseFloat(data.accuracyTrain.toFixed(3)));
         this.state.metrics.accuracy.push(parseFloat(data.accuracy.toFixed(3)));
         this.state.confusionMatrixNormalized.push(data.confusionMatrixNormalized);
         this.state.confusionMatrix.push(data.confusionMatrix);
@@ -231,7 +245,7 @@ class AppInterface extends React.Component {
 
         let lastFeatureSelection = this.state.featureSelectionHistory[this.state.featureSelectionHistory.length - 1];
 
-        client.recordEvent('LS_classify_results', {
+        this.props.client.recordEvent('LS_classify_results', {
            user: userID,
            MI: this.state.MICurrent,
            accuracy: +data.accuracy.toFixed(3),
@@ -245,7 +259,8 @@ class AppInterface extends React.Component {
           MI: this.state.MI,
           MICurrent: -1,
           metrics: {
-            accuracy: this.state.metrics.accuracy
+            accuracy: this.state.metrics.accuracy,
+            accuracyTrain: this.state.metrics.accuracyTrain
           },
           activeTabIndex: 1,
           selectedTrial1: (this.state.metrics.accuracy.length == 1) ? 0 : this.state.metrics.accuracy.length - 2,
@@ -260,6 +275,14 @@ class AppInterface extends React.Component {
             activeTabIndex: 1
         })
     }
+  }
+
+  changeROCClassDisplay(label, display) {
+      var classDisplay = this.state.ROCDisplayClass;
+      classDisplay[label].TP.display = !display;
+      this.setState({
+        ROCDisplayClass: classDisplay
+      });
   }
 
   changeDisplaySelection(event) {
@@ -287,7 +310,7 @@ class AppInterface extends React.Component {
           var axisLength = this.state.xAxisLength;
           //return { MICurrent: parseFloat(data.MI.toFixed(3)), xAxisLength : axisLength }
 
-          client.recordEvent('LS_feature_selection_exploration', {
+          this.props.client.recordEvent('LS_feature_selection_exploration', {
               user: userID,
               selectedFeatures: this.state.featureSelectionHistory[this.state.featureSelectionHistory.length - 1].selectedFeatureNames,
               MI: parseFloat(data.MI.toFixed(3)),
@@ -324,7 +347,7 @@ class AppInterface extends React.Component {
         console.log(classifierNum);
         console.log(trialNum);
         if (classifierNum == 1) {
-          client.recordEvent('LS_compare_classifier', {
+          this.props.client.recordEvent('LS_compare_classifier', {
             user: userID,
             trial1: trialNum,
             trial1Features: this.state.featureSelectionHistory[trialNum].selectedFeatureNames,
@@ -337,7 +360,7 @@ class AppInterface extends React.Component {
                 selectedTrial1: trialNum
             })
         } else {
-          client.recordEvent('LS_compare_classifier', {
+          this.props.client.recordEvent('LS_compare_classifier', {
             user: userID,
             trial1: this.state.selectedTrial1,
             trial1Features: this.state.featureSelectionHistory[this.state.selectedTrial1].selectedFeatureNames,
@@ -369,6 +392,7 @@ class AppInterface extends React.Component {
       selectedFeatureSelection = this.state.featureSelectionHistory[0];
       this.state.selectedFeatureSelection = 0;
     }
+    var trialLegend = (this.state.selectedTrial2 >= 0) ? [this.state.selectedTrial1, this.state.selectedTrial2] : [this.state.selectedTrial1];
 
     return (
         <div className={'root-div'}>
@@ -445,6 +469,30 @@ class AppInterface extends React.Component {
                                           confusionMatricesNormalized={ this.state.confusionMatrixNormalized }
                                           classNames={this.props.classNames}/>
                   </div>
+                  <div className={"confusion-matrix-title"} style={{marginLeft: "445px", marginBottom: "10px", marginTop: "20px"}}> {"ROC Curve"}</div>
+                  <div className={"grid-ROC"}>
+                      <RocCurve size={[400, 300]}
+                            name={"one"}
+                            rocCurve={this.state.rocCurve[this.state.selectedTrial1]}
+                            rocCurveTwo={(this.state.selectedTrial2 >= 0) ? this.state.rocCurve[this.state.selectedTrial2] : {} }
+                            colors={this.state.colorFunction}
+                            displayClass={this.state.ROCDisplayClass}
+                            />
+                      <Legend className={"legend legend-left class-legend legendMargin"}
+                              keys={this.props.classNames}
+                              colors={this.state.colorRange}/>
+                      <CheckboxMultiSelect options={this.state.ROCDisplayClass}
+                                             handleChange={(c, d) => this.changeROCClassDisplay(c, d)}/>
+                      <div className={"legend legend-left"}>
+                           {trialLegend.map((item, index) =>
+                               <div style={{padding: "1px", width: 100, marginLeft: "450px"}}>
+                                   <div className={`roc-legend-marker ${(index == 0) ? "first-marker" : "second-marker"}`}
+                                        style={{background: "white"}}></div>
+                                   <p>{"trial " + item}</p>
+                               </div>
+                           )}
+                      </div>
+                  </div>
                   <div className={"confusion-matrix-title"} style={{marginLeft: "445px", marginBottom: "10px", marginTop: "20px"}}> Statistical Metrics</div>
                   <div style={{textAlign: "center"}} >
                       <ProgressGraph size={[500, 300]}
@@ -452,10 +500,10 @@ class AppInterface extends React.Component {
                                      max={1}
                                      min={0}
                                      name={"accuracy-graph"}
-                                     scores={{ accuracy: this.state.metrics.accuracy }}
-                                     colors={[this.state.metricsGraphLegend[0].color]}
+                                     scores={{ accuracy: this.state.metrics.accuracy, accuracyTrain: this.state.metrics.accuracyTrain }}
+                                     colors={[this.state.metricsGraphLegend[0].color, this.state.metricsGraphLegend[1].color]}
                                      xAxisLength={this.state.xAxisLength} />
-                      <VerticalLegend legend={this.state.metricsGraphLegend} width={100}  marginLeft={"450px"}/>
+                      <VerticalLegend legend={this.state.metricsGraphLegend} width={130}  marginLeft={"450px"}/>
                   </div>
               </Tab>
           </Tabs>
