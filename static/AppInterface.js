@@ -445,6 +445,7 @@ class AppInterface extends React.Component {
                       <CheckboxMultiSelect options={this.state.classDisplay}
                             handleChange={(c, d) => this.handleClassSelection(c, d)}/>
                       </div>
+                      <div style={{display: "inline-block", width: "100%"}}>
                       <VerticalLegend style={{marginLeft : "20px"}} legend={this.state.consistencyGraphLegend} width={170}/>
                       <ProgressGraph size={[500, 300]}
                                                  yAxisLabel={"Mutual Information"}
@@ -454,6 +455,7 @@ class AppInterface extends React.Component {
                                                  scores={{ MI: (this.state.MICurrent >= 0) ? this.state.MI.concat([this.state.MICurrent]) : this.state.MI }}
                                                  colors={this.state.consistencyGraphLegend.map((item) => item.color)}
                                                  xAxisLength={this.state.xAxisLength} />
+                      </div>
               </Tab>
               <Tab linkClassName={"Performance Analysis"}>
                   <div className={"tools-bar"}>
