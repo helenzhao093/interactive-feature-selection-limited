@@ -132,6 +132,9 @@ def classify():
         data['accuracy'] = classifier.accuracy
         data['precision'] = classifier.precision
         data['recall'] = classifier.recall
+        data['accuracyTrain'] = classifier.accuracy_train
+        data['rocCurve'] = classifier.rocCurve
+        data['auc'] = classifier.auc
         data['confusionMatrix'] = classifier.cm.tolist()
         data['confusionMatrixNormalized'] = classifier.cm_normalized.tolist()
     return jsonify(data)
