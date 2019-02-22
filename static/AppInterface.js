@@ -1,7 +1,10 @@
 class AppInterface extends React.Component {
   constructor(props) {
     super(props);
-    console.log(props);
+    const client = new KeenTracking({
+        projectId: '5c461ee4c9e77c0001cf1b79',
+        writeKey: '16FCE924C6C75C4131CD671F540F04C91C1BF596A13DE9B1AE2158C318E1D7C3D0D2A2C6A98E95B2D64A600BC45D841549607338EF5B02EAFFA7C1B3791A3547F7AA5E2C55370FBC57DB7C95EFB1F257A4F7E738F92E8739913FA1CA641094CC'
+    });
     var colorRange = ["#e31a1c", "#fdbf6f", "#33a02c", "#a6cee3", "#c0392b", "#f1c40f", "#16a085", "#3498db", '#e88c5d', '#23a393' ];
     var color = d3.scaleOrdinal()
         .range(colorRange)
@@ -39,6 +42,7 @@ class AppInterface extends React.Component {
     });
 
     this.state = {
+        client: client,
         datasetName: this.props.datasetName,
         nameToIndexMap: nameToIndexMap,
         helptext: helptext,
@@ -245,7 +249,7 @@ class AppInterface extends React.Component {
 
         let lastFeatureSelection = this.state.featureSelectionHistory[this.state.featureSelectionHistory.length - 1];
 
-        this.props.client.recordEvent('LS_classify_results', {
+        this.state.client.recordEvent('LS_classify_results', {
            user: userID,
            MI: this.state.MICurrent,
            accuracy: +data.accuracy.toFixed(3),
@@ -310,7 +314,7 @@ class AppInterface extends React.Component {
           var axisLength = this.state.xAxisLength;
           //return { MICurrent: parseFloat(data.MI.toFixed(3)), xAxisLength : axisLength }
 
-          this.props.client.recordEvent('LS_feature_selection_exploration', {
+          this.state.client.recordEvent('LS_feature_selection_exploration', {
               user: userID,
               selectedFeatures: this.state.featureSelectionHistory[this.state.featureSelectionHistory.length - 1].selectedFeatureNames,
               MI: parseFloat(data.MI.toFixed(3)),
@@ -347,7 +351,7 @@ class AppInterface extends React.Component {
         console.log(classifierNum);
         console.log(trialNum);
         if (classifierNum == 1) {
-          this.props.client.recordEvent('LS_compare_classifier', {
+          this.state.client.recordEvent('LS_compare_classifier', {
             user: userID,
             trial1: trialNum,
             trial1Features: this.state.featureSelectionHistory[trialNum].selectedFeatureNames,
@@ -360,7 +364,7 @@ class AppInterface extends React.Component {
                 selectedTrial1: trialNum
             })
         } else {
-          this.props.client.recordEvent('LS_compare_classifier', {
+          this.state.client.recordEvent('LS_compare_classifier', {
             user: userID,
             trial1: this.state.selectedTrial1,
             trial1Features: this.state.featureSelectionHistory[this.state.selectedTrial1].selectedFeatureNames,
