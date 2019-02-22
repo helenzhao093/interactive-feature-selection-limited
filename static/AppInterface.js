@@ -241,7 +241,7 @@ class AppInterface extends React.Component {
         this.state.metrics.accuracy.push(parseFloat(data.accuracy.toFixed(3)));
         this.state.confusionMatrixNormalized.push(data.confusionMatrixNormalized);
         this.state.confusionMatrix.push(data.confusionMatrix);
-        this.state.trials.push("trial " + String(this.state.metrics.accuracy.length));
+        this.state.trials.push("trial " + String(this.state.metrics.accuracy.length - 1));
 
         let lastFeatureSelection = this.state.featureSelectionHistory[this.state.featureSelectionHistory.length - 1];
 
@@ -420,7 +420,7 @@ class AppInterface extends React.Component {
                           <span>Feature Selection for: </span>
                           <select onChange={ this.changeDisplaySelection } >
                               {this.state.featureSelectionHistory.map((history, index) =>
-                                  <option selected={(index == this.state.selectedFeatureSelection) ? "selected": "" } value={index}>{`trial ${index+1}`}</option>
+                                  <option selected={(index == this.state.selectedFeatureSelection) ? "selected": "" } value={index}>{`trial ${index}`}</option>
                               )}
                           </select>
                       </div>

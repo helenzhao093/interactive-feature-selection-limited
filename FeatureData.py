@@ -81,7 +81,7 @@ class FeatureData:
         self.calculate_previous_sum_feature_distribution()
 
     def create_default_class_display(self):
-        print self.class_names
+        #print self.class_names
         self.feature_data['classDisplay'] = dict()
         for class_name in self.class_names:
             self.feature_data['classDisplay'][class_name] = dict()
@@ -114,7 +114,7 @@ class FeatureData:
                 feature_range = []
                 name = self.feature_data['features'][i]['name']
                 column_data = self.features[name]
-                print column_data
+                #print column_data
                 feature_range.append(min(column_data))
                 feature_range.append(max(column_data))
                 self.feature_data['features'][i]['range'] = feature_range
@@ -175,7 +175,7 @@ class FeatureData:
                 feature_name = feature['name']
                 self.feature_mapping[feature_name] = dict()
                 values_sorted = sorted(feature['values'])
-                print feature
+                #print feature
                 value_num = []
                 for i, value in enumerate(values_sorted):
                     self.feature_mapping[feature_name][value] = float(i)
@@ -393,7 +393,7 @@ class FeatureData:
     def update_class_selection(self, update_class_name, current_display):
         new_display = not current_display
         self.feature_data['classDisplay'][update_class_name][FeatureData.TP_KEY]['display'] = new_display
-        print self.feature_data['classDisplay'][update_class_name][FeatureData.TP_KEY]['display']
+        #print self.feature_data['classDisplay'][update_class_name][FeatureData.TP_KEY]['display']
         self.init_data_no_predictions()
         #for name in self.class_names:
         #    for classification in FeatureData.CLASSIFICATIONS:
@@ -420,7 +420,7 @@ class FeatureData:
         #print X[0,:]
         #print X[1,:]
         self.MI = self.calculate_joint_probabily(X)
-        print self.MI
+        #print self.MI
         # map { yvalue: p(y)}
 
     def calculate_proba_y(self):
