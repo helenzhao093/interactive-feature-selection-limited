@@ -420,7 +420,7 @@ class FeatureData:
         #print X[0,:]
         #print X[1,:]
         self.MI = self.calculate_joint_probabily(X)
-        #print self.MI
+        print ("MI" + str(self.MI))
         # map { yvalue: p(y)}
 
     def calculate_proba_y(self):
@@ -429,7 +429,7 @@ class FeatureData:
         self.class_proba = dict()
         for yvalue in all_y_values:
             self.class_proba[yvalue] = (self.target[self.target_name] == yvalue).sum() / float(self.num_examples)
-        print self.class_proba
+        #print self.class_proba
 
     def calculate_joint_probabily(self, X):
         MI = 0
@@ -496,7 +496,7 @@ class FeatureData:
                     for feature_j in feature_rank_to_feature_name[rank]:
                         feature_j_value = self.feature_selection_function(selected_features_names, feature_j)
                         loss += self.logistic_function(feature_s_value - feature_j_value)
-        print ('pairwise loss: ' + str(loss))
+        #print ('pairwise loss: ' + str(loss))
         return loss
 
     def calculate_rank_loss_listwise(self, feature_name_to_rank_map, selected_features_names):

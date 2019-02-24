@@ -45,7 +45,7 @@ class Classifier:
         self.df = pd.DataFrame(np.asarray(numeric_data).T, columns=column_names)
 
     def classify(self, feature_names):
-        print feature_names
+        #print feature_names
         X, y = self.get_X_and_y(feature_names)
         skf = StratifiedKFold(n_splits=5)
         skf.get_n_splits(X, y)
@@ -87,7 +87,7 @@ class Classifier:
             for i in range(len(fpr)):
                 self.rocCurve[class_label].append([fpr[i], tpr[i]])
             self.auc[class_label] = auc(fpr, tpr)
-        print self.rocCurve
+        #print self.rocCurve
 
     def init_confusion_matrix(self, y_true, y_pred):
         self.cm = confusion_matrix(y_true, y_pred)

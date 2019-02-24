@@ -80,7 +80,6 @@ def get_features_data_folder():
     return initialize_data()
 
 def initialize_data():
-    print DATASET_NAME
     des = dict()
     if os.path.exists(DATA_FOLDER + 'description.csv'):
         des = parse_description(DATA_FOLDER + 'description.csv')
@@ -118,6 +117,7 @@ def create_names(names_array):
 def send_new_calculated_MI():
     if request.method == 'POST':
         data = json.loads(request.data)
+        print ("feature" + str(data['names']))
         FEATURE_DATA.calculate_mutual_information(data['features'], data['names'])
         interface_data = dict()
         interface_data['MI'] = FEATURE_DATA.MI
@@ -137,6 +137,9 @@ def classify():
         data['auc'] = classifier.auc
         data['confusionMatrix'] = classifier.cm.tolist()
         data['confusionMatrixNormalized'] = classifier.cm_normalized.tolist()
+        print ("features: " + str(features['features']))
+        print ("accuracy: " + str(classifier.accuracy))
+        print ("accuracyTrain: " + str(classifier.accuracy_train))
     return jsonify(data)
 
 @app.route('/classSelected', methods=['POST'])
@@ -152,7 +155,7 @@ def update_class_selection():
 def update_display():
     if request.method == 'POST':
         display = request.get_json(data)
-        print display
+        #print display
         HISTOGRAM.set_display(display)
     return jsonify(display)
 
