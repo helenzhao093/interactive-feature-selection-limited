@@ -420,7 +420,7 @@ class FeatureData:
         #print X[0,:]
         #print X[1,:]
         self.MI = self.calculate_joint_probabily(X)
-        print ("MI" + str(self.MI))
+        #print ("MI" + str(self.MI))
         # map { yvalue: p(y)}
 
     def calculate_proba_y(self):

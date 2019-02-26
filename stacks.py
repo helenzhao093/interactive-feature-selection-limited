@@ -117,7 +117,7 @@ def create_names(names_array):
 def send_new_calculated_MI():
     if request.method == 'POST':
         data = json.loads(request.data)
-        print ("feature" + str(data['names']))
+        #print ("feature" + str(data['names']))
         FEATURE_DATA.calculate_mutual_information(data['features'], data['names'])
         interface_data = dict()
         interface_data['MI'] = FEATURE_DATA.MI
@@ -140,6 +140,7 @@ def classify():
         print ("features: " + str(features['features']))
         print ("accuracy: " + str(classifier.accuracy))
         print ("accuracyTrain: " + str(classifier.accuracy_train))
+        print ("MI: " + str(FEATURE_DATA.MI))
     return jsonify(data)
 
 @app.route('/classSelected', methods=['POST'])
