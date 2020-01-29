@@ -2,12 +2,11 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-    <title>Stacks</title>
-    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='histogram.css')}}">
+    <title>IFS</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/app.css')}}">
   </head>
   <body style="margin: 0;">
     <div id='root'></div>
-    <script crossorigin src="https://cdn.jsdelivr.net/npm/keen-tracking@4"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/react/15.1.0/react.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/react/15.1.0/react-dom.min.js"></script>
     <script src="http://cdnjs.cloudflare.com/ajax/libs/react/0.13.3/JSXTransformer.js"></script>
@@ -16,15 +15,15 @@
     <script src="https://d3js.org/d3-scale-chromatic.v1.min.js"></script>
     <script src="https://unpkg.com/viz.js@1.8.0/viz.js"></script>
     <script src="https://unpkg.com/d3-graphviz@0.1.2/build/d3-graphviz.js"></script>
-    <script type="text/jsx" src="{{ url_for('static', filename='index.js') }}"></script>
-    <script type="text/jsx" src="{{ url_for('static', filename='AppInterface.js') }}"></script>
-    <script type="text/jsx" src="{{ url_for('static', filename='Tab.js') }}"></script>
-    <script type="text/jsx" src="{{ url_for('static', filename='SideBar.js') }}"></script>
-    <script type="text/jsx" src="{{ url_for('static', filename='ProgressGraph.js') }}"></script>
-    <script type="text/jsx" src="{{ url_for('static', filename='ConfusionMatrix.js') }}"></script>
-    <script type="text/jsx" src="{{ url_for('static', filename='FeatureParallelCoordinates.js') }}"></script>
-    <script type="text/jsx" src="{{ url_for('static', filename='CheckboxMultiSelect.js') }}"></script>
-    <script type="text/jsx" src="{{ url_for('static', filename='RocCurve.js') }}"></script>
+    <script type="text/jsx" src="{{ url_for('static', filename='js/index.js') }}"></script>
+    <script type="text/jsx" src="{{ url_for('static', filename='js/AppInterface.js') }}"></script>
+    <script type="text/jsx" src="{{ url_for('static', filename='js/Tab.js') }}"></script>
+    <script type="text/jsx" src="{{ url_for('static', filename='js/SideBar.js') }}"></script>
+    <script type="text/jsx" src="{{ url_for('static', filename='js/ProgressGraph.js') }}"></script>
+    <script type="text/jsx" src="{{ url_for('static', filename='js/ConfusionMatrix.js') }}"></script>
+    <script type="text/jsx" src="{{ url_for('static', filename='js/FeatureParallelCoordinates.js') }}"></script>
+    <script type="text/jsx" src="{{ url_for('static', filename='js/CheckboxMultiSelect.js') }}"></script>
+    <script type="text/jsx" src="{{ url_for('static', filename='js/RocCurve.js') }}"></script>
 
   </body>
 </html>

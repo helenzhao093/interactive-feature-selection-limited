@@ -2,11 +2,12 @@ import os
 import requests
 import csv
 import pandas as pd
-from FeatureData import FeatureData
-from parse_features import *
-from Classifier import Classifier
+from ifs.FeatureData import FeatureData
+from ifs.parse_features import *
+from ifs.Classifier import Classifier
 import numpy as np
 import json
+import random
 from flask import Flask, render_template, flash, request, redirect, jsonify, url_for, send_from_directory
 from werkzeug.utils import secure_filename
 
@@ -28,6 +29,14 @@ p = None
 tetrad = None
 prior = None
 class_name = ""
+
+filename = ""
+trial_number = None
+prev_time = datetime.now()
+
+df_train = None
+df_test = None
+df_validate = None
 
 def allowed_file(filename):
     return '.' in filename and \
@@ -56,6 +65,9 @@ def uploaded_file():
 def demo():
     global DATA_FOLDER
     global DATASET_NAME
+    global filename
+    filename = "data" + str(int(random.random() * 10000)) + ".txt"
+
     DATA_FOLDER = 'static/demo/'
     DATASET_NAME = 'demo'
     return render_template('index.html')
@@ -64,15 +76,26 @@ def demo():
 def dataset_1():
     global DATA_FOLDER
     global DATASET_NAME
-    DATA_FOLDER = 'static/synthetic_data2/'
-    DATASET_NAME = 'dataset1'
-    return render_template('index.html')
+    global df_test
+    global df_train
+    global df_validate
+    global filename
+    filename = "data" + str(int(random.random() * 10000)) + ".txt"
 
-@app.route("/dataset2")
-def dataset_2():
-    global DATA_FOLDER
-    DATA_FOLDER = 'static/synthetic_data1/'
-    DATASET_NAME = 'dataset2'
+    DATA_FOLDER = 'static/data/test_data2/'
+    index_list = [1,2,3,4]
+    random_index = random.choice(index_list)
+    index_list.remove(random_index)
+    df_train = pd.read_csv(DATA_FOLDER + 'train_' + str(random_index) + '.csv')
+    df_test = None
+    for index in index_list:
+        temp = pd.read_csv(DATA_FOLDER + 'train_' + str(index) + '.csv')
+        if df_test is None:
+            df_test = temp
+        else:
+            df_test = pd.concat([df_test, temp], axis=0)
+    df_validate = pd.read_csv(DATA_FOLDER + 'validation_datafile.csv')
+    DATASET_NAME = 'dataset1'
     return render_template('index.html')
 
 @app.route("/getFeatures")
@@ -92,7 +115,7 @@ def initialize_data():
     class_values = np.sort(dataframe[class_name].unique())#convert_csv_to_array(DATA_FOLDER + 'classnames.csv', False, csv.QUOTE_ALL)
 
     global classifier
-    classifier = Classifier(DATA_FOLDER + 'datafile.csv', class_name)
+    classifier = Classifier(DATA_FOLDER, class_name, df_train, df_test, df_validate)
 
     global FEATURE_DATA
     numeric_data = classifier.df
@@ -125,7 +148,11 @@ def send_new_calculated_MI():
 
 @app.route("/classify", methods=['POST'])
 def classify():
+    global trial_number
+    global prev_time
     if request.method == 'POST':
+        global filename
+        file = open(filename, "a+")
         features = json.loads(request.data)
         classifier.classify(features['features'])
         data = dict()
@@ -137,10 +164,35 @@ def classify():
         data['auc'] = classifier.auc
         data['confusionMatrix'] = classifier.cm.tolist()
         data['confusionMatrixNormalized'] = classifier.cm_normalized.tolist()
-        print ("features: " + str(features['features']))
-        print ("accuracy: " + str(classifier.accuracy))
-        print ("accuracyTrain: " + str(classifier.accuracy_train))
-        print ("MI: " + str(FEATURE_DATA.MI))
+        
+        file.write("trial: " + str(trial_number))
+        file.write("\n")
+        timenow = datetime.now()
+        file.write("time: " + str(timenow))
+        file.write("\n")
+        file.write("time elapse: " + str(timenow - prev_time))
+        prev_time = timenow
+        file.write("\n")
+        file.write("features: " + str(features['features']))
+        file.write("\n")
+        file.write("accuracytest: " + str(classifier.accuracy)) # test accuracy
+        file.write("\n")
+        file.write("accuracyTrain: " + str(classifier.accuracy_train))
+        file.write("\n")
+        file.write("accuracyValidation: " + str(classifier.accuracy_validation))
+        file.write("\n")
+        file.write("MI: " + str(FEATURE_DATA.MI))
+        file.write("\n")
+        file.write("AUC: " + str(classifier.auc))
+        file.write("\n")
+        file.write("\n")
+        file.close()
+        trial_number += 1
+
+        #print ("features: " + str(features['features']))
+        #print ("accuracy: " + str(classifier.accuracy))
+        #print ("accuracyTrain: " + str(classifier.accuracy_train))
+        #print ("MI: " + str(FEATURE_DATA.MI))
     return jsonify(data)
 
 @app.route('/classSelected', methods=['POST'])
@@ -165,4 +217,4 @@ def send_js(path):
     return send_from_directory('static', path)
 
 if __name__ == "__main__":
-    app.run(host="0.0.0.0", port=80)
+    app.run(host="0.0.0.0", port=8888)

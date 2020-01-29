@@ -1,5 +1,7 @@
 from sklearn.naive_bayes import GaussianNB
 from sklearn.neighbors import KNeighborsClassifier
+from sklearn.ensemble import RandomForestClassifier
+from sklearn.linear_model import LogisticRegression
 from sklearn.model_selection import StratifiedKFold
 from sklearn.metrics import precision_score
 from sklearn.metrics import recall_score
@@ -16,59 +18,65 @@ from sklearn.metrics import roc_curve, auc
 
 # read datafile with features + target in last column
 class Classifier:
-    def __init__(self, filename, class_name):
-        self.df_og = pd.read_csv(filename)
-        self.clf = KNeighborsClassifier(3)
-        self.clf_roc = OneVsRestClassifier(GaussianNB())
+    def __init__(self, filename, class_name, df_train_og, df_test_og, df_validate_og):
+        
+        self.clf = LogisticRegression()
+        self.clf_roc = OneVsRestClassifier(LogisticRegression())
         self.accuracy = 0
         self.precision = 0
         self.recall = 0
         self.class_name = class_name
-        self.process_discrete_features()
-        # classify :
-        # input is array of feature names
 
-    def process_discrete_features(self):
+        self.df_train = self.process_discrete_features(df_train_og)
+        self.df_test = self.process_discrete_features(df_test_og)
+        self.df_validate = self.process_discrete_features(df_validate_og)
+        self.df_traintest = pd.concat([self.df_train, self.df_test])
+
+    def process_discrete_features(self, df):
         numeric_data = []
         self.les = {}
-        column_names = list(self.df_og.columns.values)
+        column_names = list(df.columns.values)
         for feature in column_names:
             if feature == self.class_name:
-                self.class_labels = np.sort(self.df_og[feature].unique())
-            if self.df_og[feature].dtype != 'int64' or self.df_og[feature].dtype != 'float64':
+                self.class_labels = np.sort(df[feature].unique())
+            if df[feature].dtype != 'int64' or df[feature].dtype != 'float64':
                 le = preprocessing.LabelEncoder()
-                le.fit(np.sort(self.df_og[feature].unique()))
-                numeric_data.append(le.transform(self.df_og[feature]))
+                le.fit(np.sort(df[feature].unique()))
+                numeric_data.append(le.transform(df[feature]))
                 self.les[feature] = le
             else:
-                numeric_data.append(list(self.df_og[feature]))
-        self.df = pd.DataFrame(np.asarray(numeric_data).T, columns=column_names)
+                numeric_data.append(list(df[feature]))
+        newdf = pd.DataFrame(np.asarray(numeric_data).T, columns=column_names)
+        return newdf
 
     def classify(self, feature_names):
-        #print feature_names
-        X, y = self.get_X_and_y(feature_names)
-        skf = StratifiedKFold(n_splits=5)
-        skf.get_n_splits(X, y)
-        accurary = cross_val_score(self.clf, X, y, cv=skf)
+        X_train, y_train = self.get_X_and_y(feature_names, self.df_train)
+        X_traintest, y_traintest = self.get_X_and_y(feature_names, self.df_traintest)
+        X_test, y_test = self.get_X_and_y(feature_names, self.df_test)
+        X_validation, y_validation = self.get_X_and_y(feature_names, self.df_validate)
         accuracy_train = []
-        precision = []
-        recall = []
-        for train_index, test_index in skf.split(X, y):
-            #print("TRAIN:", train_index, "TEST:", test_index)
-            X_train, X_test = X[train_index], X[test_index]
-            y_train, y_test = y[train_index], y[test_index]
-            self.clf.fit(X_train, y_train)
-            accuracy_train.append(self.clf.score(X_train, y_train))
-            #accurary.append(self.clf.score(X_test, y_test))
-            y_pred = self.clf.predict(X_test)
-            precision.append(precision_score(y_test, y_pred, average='weighted'))
-            recall.append(recall_score(y_test, y_pred, average='weighted'))
-        self.predicted = cross_val_predict(self.clf, X, y, cv=skf)
-        self.proba = cross_val_predict(self.clf, X, y, cv=skf, method='predict_proba')
-        self.init_confusion_matrix(y, self.predicted)
-        #print self.predictions
-        self.set_average_scores(accurary, accuracy_train, precision, recall)
-        self.get_roc_curve(X, y)
+        accuracy_test = []
+        accuracy_traintest = []
+        accuracy_validation = []
+
+        self.clf.fit(X_train, y_train)
+        accuracy_train.append(self.clf.score(X_train, y_train))
+        accuracy_test.append(self.clf.score(X_test, y_test)) # testing accuracy
+        accuracy_traintest.append(self.clf.score(X_traintest, y_traintest))
+        accuracy_validation.append(self.clf.score(X_validation, y_validation))# validation accuracy
+
+        predicted = self.clf.predict(X_test)
+        self.proba = self.clf.predict_proba(X_test)
+        predicted_train = self.clf.predict(X_test)
+        self.init_confusion_matrix(y_test, predicted_train)
+        self.get_roc_curve(X_test, y_test)
+
+        self.accuracy_train = round(sum(accuracy_train) * 1.0 / len(accuracy_train), 2)
+        #print self.accuracy_train
+        self.accuracy = round(sum(accuracy_test) * 1.0 / len(accuracy_test), 2) 
+        #print self.accuracy
+        self.accuracy_validation = round(sum(accuracy_validation) * 1.0 / len(accuracy_validation), 2)  
+        #print self.accuracy_validation
 
     def get_roc_curve(self, X, y):
         classes = sorted(list(set(y)))
@@ -103,9 +111,9 @@ class Classifier:
     def get_average(self, scores):
         return sum(scores)/len(scores)
 
-    def get_X_and_y(self, feature_names):
-        X = self.df.loc[:, feature_names]
-        y = self.df.loc[:, self.class_name]
+    def get_X_and_y(self, feature_names, df):
+        X = df.loc[:, feature_names]
+        y = df.loc[:, self.class_name]
         X = X.as_matrix()
         y = y.as_matrix()
         return X, y
