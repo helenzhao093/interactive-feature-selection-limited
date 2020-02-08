@@ -5,8 +5,8 @@ var IDFun = function () {
     //return '_' + Math.random().toString(36).substr(2, 9);
 };
 
-const userID = IDFun();
-console.log(userID);
+//const userID = IDFun();
+//console.log(userID);
 
 function getData(){
   return new Promise(function(resolve, reject) {
