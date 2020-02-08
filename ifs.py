@@ -86,8 +86,8 @@ def dataset_1():
     global df_test
     global df_train
     global df_validate
-    global filename
-    filename = "data" + str(int(random.random() * 10000)) + ".txt"
+    #global filename
+    #filename = "data" + str(int(random.random() * 10000)) + ".txt"
 
     DATA_FOLDER = 'static/data/test_data2/'
     index_list = [1,2,3,4]
@@ -114,7 +114,7 @@ def initialize_data():
     if os.path.exists(DATA_FOLDER + 'description.csv'):
         des = parse_description(DATA_FOLDER + 'description.csv')
     feature_names = parse_features(DATA_FOLDER + 'names.csv')
-    dataframe = pd.read_csv(DATA_FOLDER + 'datafile.csv')
+    dataframe = df_train #pd.read_csv(DATA_FOLDER + 'datafile.csv')
     global class_name
     class_name = dataframe.columns.values[-1]
     features = dataframe.drop([class_name], axis=1)
