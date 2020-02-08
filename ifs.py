@@ -66,11 +66,17 @@ def uploaded_file():
 def demo():
     global DATA_FOLDER
     global DATASET_NAME
+    global df_test
+    global df_train
+    global df_validate
     global filename
-    filename = "data" + str(int(random.random() * 10000)) + ".txt"
-
+    #filename = "data" + str(int(random.random() * 10000)) + ".txt"
     DATA_FOLDER = 'static/data/demo/'
     DATASET_NAME = 'demo'
+
+    df_train = pd.read_csv(DATA_FOLDER + 'train_datafile.csv')
+    df_test = pd.read_csv(DATA_FOLDER + 'test_datafile.csv')
+    df_validate = pd.read_csv(DATA_FOLDER + 'validation_datafile.csv')
     return render_template('index.html')
 
 @app.route("/dataset1")
