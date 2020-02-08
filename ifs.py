@@ -32,7 +32,7 @@ prior = None
 class_name = ""
 
 filename = ""
-trial_number = None
+trial_number = 0
 prev_time = datetime.now()
 
 df_train = None
