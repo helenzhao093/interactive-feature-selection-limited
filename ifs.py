@@ -125,7 +125,7 @@ def initialize_data():
     classifier = Classifier(DATA_FOLDER, class_name, df_train, df_test, df_validate)
 
     global FEATURE_DATA
-    numeric_data = classifier.df
+    numeric_data = classifier.df_train
     FEATURE_DATA = FeatureData(target, features, numeric_data, feature_names, class_values, class_name)
     interface_data = dict()
     interface_data['featureData'] = FEATURE_DATA.feature_data
