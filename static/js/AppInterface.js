@@ -38,7 +38,7 @@ class AppInterface extends React.Component {
     });
 
     this.state = {
-        client: client,
+        //client: client,
         datasetName: this.props.datasetName,
         nameToIndexMap: nameToIndexMap,
         helptext: helptext,
@@ -245,13 +245,13 @@ class AppInterface extends React.Component {
 
         let lastFeatureSelection = this.state.featureSelectionHistory[this.state.featureSelectionHistory.length - 1];
 
-        this.state.client.recordEvent('LS_classify_results', {
+        /*this.state.client.recordEvent('LS_classify_results', {
            user: userID,
            MI: this.state.MICurrent,
            accuracy: +data.accuracy.toFixed(3),
            selectedFeatures: allFeatureNames,
            confusionMatrix: data.confusionMatrix //
-        });
+        });*/
 
         this.setState({
           isNewTrial: true,
@@ -310,11 +310,11 @@ class AppInterface extends React.Component {
           var axisLength = this.state.xAxisLength;
           //return { MICurrent: parseFloat(data.MI.toFixed(3)), xAxisLength : axisLength }
 
-          this.state.client.recordEvent('LS_feature_selection_exploration', {
+          /*this.state.client.recordEvent('LS_feature_selection_exploration', {
               user: userID,
               selectedFeatures: this.state.featureSelectionHistory[this.state.featureSelectionHistory.length - 1].selectedFeatureNames,
               MI: parseFloat(data.MI.toFixed(3)),
-          });
+          });*/
 
           this.setState({
             MICurrent : parseFloat(data.MI.toFixed(3)),
@@ -347,7 +347,7 @@ class AppInterface extends React.Component {
         console.log(classifierNum);
         console.log(trialNum);
         if (classifierNum == 1) {
-          this.state.client.recordEvent('LS_compare_classifier', {
+          /*this.state.client.recordEvent('LS_compare_classifier', {
             user: userID,
             trial1: trialNum,
             trial1Features: this.state.featureSelectionHistory[trialNum].selectedFeatureNames,
@@ -355,12 +355,12 @@ class AppInterface extends React.Component {
             accuracy1: this.state.metrics.accuracy[trialNum],
             accuracy2: this.state.metrics.accuracy[this.state.selectedTrial2],
             trial2Features: this.state.featureSelectionHistory[this.state.selectedTrial2].selectedFeatureNames
-          });
+          });*/
             this.setState({
                 selectedTrial1: trialNum
             })
         } else {
-          this.state.client.recordEvent('LS_compare_classifier', {
+          /*this.state.client.recordEvent('LS_compare_classifier', {
             user: userID,
             trial1: this.state.selectedTrial1,
             trial1Features: this.state.featureSelectionHistory[this.state.selectedTrial1].selectedFeatureNames,
@@ -368,7 +368,7 @@ class AppInterface extends React.Component {
             trial2: trialNum,
             accuracy1: this.state.metrics.accuracy[this.state.selectedTrial1],
             accuracy2: this.state.metrics.accuracy[trialNum]
-          });
+          });*/
             this.setState({
                 selectedTrial2: trialNum
             })
