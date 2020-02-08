@@ -69,7 +69,7 @@ def demo():
     global filename
     filename = "data" + str(int(random.random() * 10000)) + ".txt"
 
-    DATA_FOLDER = 'static/demo/'
+    DATA_FOLDER = 'static/data/demo/'
     DATASET_NAME = 'demo'
     return render_template('index.html')
 
