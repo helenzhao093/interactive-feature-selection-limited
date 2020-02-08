@@ -70,7 +70,7 @@ def demo():
     global df_train
     global df_validate
     global filename
-    #filename = "data" + str(int(random.random() * 10000)) + ".txt"
+    filename = "data" + str(int(random.random() * 10000)) + ".txt"
     DATA_FOLDER = 'static/data/demo/'
     DATASET_NAME = 'demo'
 
@@ -86,8 +86,8 @@ def dataset_1():
     global df_test
     global df_train
     global df_validate
-    #global filename
-    #filename = "data" + str(int(random.random() * 10000)) + ".txt"
+    global filename
+    filename = "data" + str(int(random.random() * 10000)) + ".txt"
 
     DATA_FOLDER = 'static/data/test_data2/'
     index_list = [1,2,3,4]
