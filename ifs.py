@@ -87,6 +87,8 @@ def dataset_1():
     global df_train
     global df_validate
     global filename
+    global trial_number
+    trial_number = 0
     filename = "data" + str(int(random.random() * 10000)) + ".txt"
 
     DATA_FOLDER = 'static/data/test_data2/'
