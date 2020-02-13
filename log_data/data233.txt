@@ -1,0 +1,70 @@
+trial: 45
+time: 2020-02-12 05:41:23.533077
+time elapse: 0:04:04.001404
+features: [u'studytime', u'extraclasses']
+accuracytest: 0.42
+accuracyTrain: 0.52
+accuracyValidation: 0.57
+MI: 1.323166419646641
+AUC: {'A': 0.6726190476190477, 'C': 0.5125, 'B': 0.7334558823529411, 'F': 0.6975}
+
+trial: 46
+time: 2020-02-12 05:41:35.070593
+time elapse: 0:00:11.537516
+features: [u'studytime', u'extraclasses', u'familysupport']
+accuracytest: 0.53
+accuracyTrain: 0.69
+accuracyValidation: 0.68
+MI: 1.4264512180487434
+AUC: {'A': 0.675595238095238, 'C': 0.5549999999999999, 'B': 0.6948529411764706, 'F': 0.7187499999999999}
+
+trial: 47
+time: 2020-02-12 05:41:42.369437
+time elapse: 0:00:07.298844
+features: [u'studytime', u'extraclasses', u'familysupport', u'college']
+accuracytest: 0.81
+accuracyTrain: 0.88
+accuracyValidation: 0.86
+MI: 1.730533502342654
+AUC: {'A': 0.882936507936508, 'C': 0.92, 'B': 0.8933823529411765, 'F': 0.845}
+
+trial: 48
+time: 2020-02-12 05:41:49.282358
+time elapse: 0:00:06.912921
+features: [u'studytime', u'extraclasses', u'familysupport', u'college', u'scholarship']
+accuracytest: 0.81
+accuracyTrain: 0.88
+accuracyValidation: 0.86
+MI: 1.7791972468945536
+AUC: {'A': 0.8591269841269842, 'C': 0.92, 'B': 0.9301470588235294, 'F': 0.8674999999999999}
+
+trial: 49
+time: 2020-02-12 05:41:54.521459
+time elapse: 0:00:05.239101
+features: [u'studytime', u'extraclasses', u'familysupport', u'scholarship']
+accuracytest: 0.83
+accuracyTrain: 0.9
+accuracyValidation: 0.87
+MI: 1.7791972468945536
+AUC: {'A': 0.882936507936508, 'C': 0.92, 'B': 0.9227941176470589, 'F': 0.8674999999999999}
+
+trial: 50
+time: 2020-02-12 05:42:06.587178
+time elapse: 0:00:12.065719
+features: [u'studytime', u'extraclasses', u'familysupport', u'scholarship', u'familyincome']
+accuracytest: 0.81
+accuracyTrain: 0.9
+accuracyValidation: 0.86
+MI: 1.7791972468945536
+AUC: {'A': 0.9305555555555555, 'C': 0.92, 'B': 0.8952205882352942, 'F': 0.865}
+
+trial: 51
+time: 2020-02-12 05:42:16.020177
+time elapse: 0:00:09.432999
+features: [u'studytime', u'extraclasses', u'familysupport', u'scholarship', u'age']
+accuracytest: 0.83
+accuracyTrain: 0.9
+accuracyValidation: 0.87
+MI: 1.9260332473445476
+AUC: {'A': 0.8670634920634921, 'C': 0.9125000000000001, 'B': 0.9191176470588236, 'F': 0.8674999999999999}
+

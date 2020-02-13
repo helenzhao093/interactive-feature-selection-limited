@@ -1,0 +1,220 @@
+trial: 0
+time: 2020-02-11 21:45:08.556312
+time elapse: 5:59:49.710150
+features: [u'motherhasjob']
+accuracytest: 0.28
+accuracyTrain: 0.35
+accuracyValidation: 0.3
+MI: 0.21756362677934254
+AUC: {'A': 0.5674603174603174, 'C': 0.6000000000000001, 'B': 0.46139705882352944, 'F': 0.4625}
+
+trial: 1
+time: 2020-02-11 21:46:53.281016
+time elapse: 0:01:44.724704
+features: [u'studytime', u'college', u'scholarship']
+accuracytest: 0.65
+accuracyTrain: 0.63
+accuracyValidation: 0.67
+MI: 1.5409738706848515
+AUC: {'A': 0.9484126984126984, 'C': 0.8525, 'B': 0.917279411764706, 'F': 0.8400000000000001}
+
+trial: 2
+time: 2020-02-11 21:47:38.526248
+time elapse: 0:00:45.245232
+features: [u'studytime', u'college', u'fatherhasjob', u'scholarship', u'extraclasses', u'extracurriculars', u'age', u'job', u'familyincome', u'familysupport', u'motherhasjob']
+accuracytest: 0.79
+accuracyTrain: 0.88
+accuracyValidation: 0.81
+MI: 1.9260332473445476
+AUC: {'A': 0.871031746031746, 'C': 0.93, 'B': 0.8915441176470589, 'F': 0.8374999999999999}
+
+trial: 3
+time: 2020-02-11 21:51:04.533641
+time elapse: 0:03:26.007393
+features: [u'motherhasjob', u'fatherhasjob', u'job', u'studytime', u'college', u'age', u'familysupport', u'extracurriculars']
+accuracytest: 0.69
+accuracyTrain: 0.88
+accuracyValidation: 0.75
+MI: 1.9260332473445474
+AUC: {'A': 0.8492063492063493, 'C': 0.9249999999999999, 'B': 0.8915441176470589, 'F': 0.8125}
+
+trial: 4
+time: 2020-02-11 21:51:35.030619
+time elapse: 0:00:30.496978
+features: [u'motherhasjob', u'fatherhasjob', u'job', u'studytime', u'age', u'familysupport', u'extracurriculars']
+accuracytest: 0.57
+accuracyTrain: 0.81
+accuracyValidation: 0.6
+MI: 1.9260332473445476
+AUC: {'A': 0.8095238095238095, 'C': 0.79875, 'B': 0.6920955882352942, 'F': 0.7475}
+
+trial: 5
+time: 2020-02-11 21:53:15.030924
+time elapse: 0:01:40.000305
+features: [u'motherhasjob', u'fatherhasjob', u'familysupport', u'familyincome', u'studytime', u'scholarship', u'college', u'extraclasses', u'job', u'extracurriculars', u'age']
+accuracytest: 0.79
+accuracyTrain: 0.88
+accuracyValidation: 0.81
+MI: 1.8875717088830093
+AUC: {'A': 0.871031746031746, 'C': 0.93, 'B': 0.8915441176470589, 'F': 0.8374999999999999}
+
+trial: 6
+time: 2020-02-11 21:53:51.778781
+time elapse: 0:00:36.747857
+features: [u'familysupport', u'familyincome', u'studytime', u'scholarship', u'college', u'extraclasses', u'job', u'extracurriculars', u'age']
+accuracytest: 0.79
+accuracyTrain: 0.87
+accuracyValidation: 0.83
+MI: 1.9260332473445476
+AUC: {'A': 0.8799603174603173, 'C': 0.9275, 'B': 0.921875, 'F': 0.835}
+
+trial: 7
+time: 2020-02-11 21:54:09.338292
+time elapse: 0:00:17.559511
+features: [u'familyincome', u'familysupport', u'studytime', u'scholarship', u'college', u'job', u'extracurriculars', u'age']
+accuracytest: 0.73
+accuracyTrain: 0.85
+accuracyValidation: 0.8
+MI: 1.8875717088830093
+AUC: {'A': 0.8918650793650793, 'C': 0.93875, 'B': 0.921875, 'F': 0.84875}
+
+trial: 8
+time: 2020-02-11 21:54:15.602562
+time elapse: 0:00:06.264270
+features: [u'familyincome', u'familysupport', u'studytime', u'scholarship', u'college', u'job', u'extraclasses', u'extracurriculars']
+accuracytest: 0.77
+accuracyTrain: 0.87
+accuracyValidation: 0.82
+MI: 1.7816144972613377
+AUC: {'A': 0.8869047619047619, 'C': 0.9325, 'B': 0.917279411764706, 'F': 0.8374999999999999}
+
+trial: 9
+time: 2020-02-11 21:55:02.819322
+time elapse: 0:00:47.216760
+features: [u'familyincome', u'familysupport', u'studytime', u'scholarship', u'college', u'job', u'extraclasses', u'extracurriculars', u'age']
+accuracytest: 0.79
+accuracyTrain: 0.87
+accuracyValidation: 0.83
+MI: 1.8875717088830093
+AUC: {'A': 0.8799603174603173, 'C': 0.9275, 'B': 0.921875, 'F': 0.835}
+
+trial: 10
+time: 2020-02-11 21:55:20.075521
+time elapse: 0:00:17.256199
+features: [u'familysupport', u'studytime', u'scholarship', u'college', u'job', u'extraclasses', u'extracurriculars', u'age']
+accuracytest: 0.77
+accuracyTrain: 0.87
+accuracyValidation: 0.83
+MI: 1.9260332473445476
+AUC: {'A': 0.8521825396825397, 'C': 0.9275, 'B': 0.921875, 'F': 0.8625}
+
+trial: 11
+time: 2020-02-11 21:56:04.617120
+time elapse: 0:00:44.541599
+features: [u'familysupport', u'studytime', u'scholarship', u'college', u'job', u'extraclasses', u'extracurriculars']
+accuracytest: 0.77
+accuracyTrain: 0.87
+accuracyValidation: 0.83
+MI: 1.8326726132623685
+AUC: {'A': 0.8551587301587301, 'C': 0.9325, 'B': 0.9172794117647058, 'F': 0.8624999999999999}
+
+trial: 12
+time: 2020-02-11 21:56:41.846564
+time elapse: 0:00:37.229444
+features: [u'familysupport', u'extraclasses', u'studytime', u'college', u'scholarship', u'extracurriculars']
+accuracytest: 0.82
+accuracyTrain: 0.88
+accuracyValidation: 0.87
+MI: 1.8491101704214716
+AUC: {'A': 0.8551587301587301, 'C': 0.9275, 'B': 0.9338235294117646, 'F': 0.845}
+
+trial: 13
+time: 2020-02-11 21:56:53.590461
+time elapse: 0:00:11.743897
+features: [u'familysupport', u'extraclasses', u'studytime', u'college', u'scholarship', u'extracurriculars', u'familyincome']
+accuracytest: 0.81
+accuracyTrain: 0.88
+accuracyValidation: 0.86
+MI: 1.8491101704214716
+AUC: {'A': 0.8809523809523809, 'C': 0.9275, 'B': 0.9356617647058824, 'F': 0.845}
+
+trial: 14
+time: 2020-02-11 21:56:59.318701
+time elapse: 0:00:05.728240
+features: [u'familysupport', u'extraclasses', u'studytime', u'college', u'scholarship', u'extracurriculars', u'familyincome']
+accuracytest: 0.81
+accuracyTrain: 0.88
+accuracyValidation: 0.86
+MI: 1.8491101704214716
+AUC: {'A': 0.8809523809523809, 'C': 0.9275, 'B': 0.9356617647058824, 'F': 0.845}
+
+trial: 15
+time: 2020-02-11 21:57:07.082547
+time elapse: 0:00:07.763846
+features: [u'familysupport', u'extraclasses', u'college', u'scholarship', u'extracurriculars']
+accuracytest: 0.66
+accuracyTrain: 0.79
+accuracyValidation: 0.67
+MI: 1.5367232909293516
+AUC: {'A': 0.7986111111111112, 'C': 0.93, 'B': 0.7794117647058824, 'F': 0.84375}
+
+trial: 16
+time: 2020-02-11 21:57:35.079598
+time elapse: 0:00:27.997051
+features: [u'extraclasses', u'scholarship', u'familysupport', u'studytime', u'extracurriculars', u'college']
+accuracytest: 0.82
+accuracyTrain: 0.88
+accuracyValidation: 0.87
+MI: 1.9260332473445485
+AUC: {'A': 0.8551587301587301, 'C': 0.9275, 'B': 0.9338235294117646, 'F': 0.845}
+
+trial: 17
+time: 2020-02-11 21:58:03.282764
+time elapse: 0:00:28.203166
+features: [u'extraclasses', u'scholarship', u'studytime', u'familysupport', u'college', u'extracurriculars']
+accuracytest: 0.82
+accuracyTrain: 0.88
+accuracyValidation: 0.87
+MI: 1.9260332473445485
+AUC: {'A': 0.8551587301587301, 'C': 0.9275, 'B': 0.9338235294117646, 'F': 0.845}
+
+trial: 18
+time: 2020-02-11 21:58:28.578317
+time elapse: 0:00:25.295553
+features: [u'extraclasses', u'scholarship', u'studytime', u'familysupport', u'extracurriculars', u'college']
+accuracytest: 0.82
+accuracyTrain: 0.88
+accuracyValidation: 0.87
+MI: 1.9260332473445485
+AUC: {'A': 0.8551587301587301, 'C': 0.9275, 'B': 0.9338235294117646, 'F': 0.845}
+
+trial: 19
+time: 2020-02-11 22:00:05.823779
+time elapse: 0:01:37.245462
+features: [u'extraclasses', u'scholarship', u'studytime', u'familysupport', u'extracurriculars', u'college', u'familyincome']
+accuracytest: 0.81
+accuracyTrain: 0.88
+accuracyValidation: 0.86
+MI: 1.9260332473445485
+AUC: {'A': 0.8809523809523809, 'C': 0.9275, 'B': 0.9356617647058824, 'F': 0.845}
+
+trial: 20
+time: 2020-02-11 22:00:13.591305
+time elapse: 0:00:07.767526
+features: [u'extraclasses', u'scholarship', u'studytime', u'familysupport', u'extracurriculars', u'college', u'age']
+accuracytest: 0.82
+accuracyTrain: 0.88
+accuracyValidation: 0.87
+MI: 1.9260332473445476
+AUC: {'A': 0.8521825396825397, 'C': 0.915, 'B': 0.9347426470588236, 'F': 0.845}
+
+trial: 21
+time: 2020-02-11 22:02:09.815681
+time elapse: 0:01:56.224376
+features: [u'extraclasses', u'scholarship', u'studytime', u'familysupport', u'extracurriculars', u'college']
+accuracytest: 0.82
+accuracyTrain: 0.88
+accuracyValidation: 0.87
+MI: 1.9260332473445485
+AUC: {'A': 0.8551587301587301, 'C': 0.9275, 'B': 0.9338235294117646, 'F': 0.845}
+

@@ -1,0 +1,10 @@
+trial: None
+time: 2020-02-08 07:14:47.286135
+time elapse: 0:00:07.692030
+features: [u'motherhasjob', u'extracurriculars', u'job', u'studytime']
+accuracytest: 0.54
+accuracyTrain: 0.52
+accuracyValidation: 0.6
+MI: 1.7627596897354505
+AUC: {'A': 0.7896825396825397, 'C': 0.755, 'B': 0.6783088235294117, 'F': 0.7025}
+
