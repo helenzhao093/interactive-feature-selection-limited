@@ -1,0 +1,20 @@
+trial: 0
+time: 2020-02-25 06:38:00.092949
+time elapse: 0:00:58.239345
+features: [u'hasdog', u'extracurriculars', u'job', u'studytime', u'age', u'skateboards', u'brownhair', u'extraclasses', u'familysupport', u'college']
+accuracytest: 0.59
+accuracyTrain: 0.81
+accuracyValidation: 0.69
+MI: 1.926033247344547
+AUC: {'A': 0.8530701754385964, 'C': 0.9114219114219114, 'B': 0.714795008912656, 'F': 0.8650000000000001}
+
+trial: 1
+time: 2020-02-25 06:38:07.644686
+time elapse: 0:00:07.551737
+features: [u'hasdog', u'extracurriculars', u'job', u'studytime', u'age', u'skateboards', u'brownhair', u'extraclasses', u'familysupport', u'college', u'scholarship']
+accuracytest: 0.59
+accuracyTrain: 0.83
+accuracyValidation: 0.69
+MI: 1.926033247344547
+AUC: {'A': 0.8574561403508772, 'C': 0.9090909090909091, 'B': 0.7254901960784313, 'F': 0.8525}
+

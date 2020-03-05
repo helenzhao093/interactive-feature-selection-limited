@@ -1,0 +1,30 @@
+trial: 0
+time: 2020-02-20 16:11:01.337265
+time elapse: 0:00:23.930972
+features: [u'hasdog', u'extracurriculars', u'job', u'studytime', u'age', u'likeskateboarding', u'familyincome', u'extraclasses', u'familysupport', u'college', u'scholarship']
+accuracytest: 0.61
+accuracyTrain: 0.88
+accuracyValidation: 0.77
+MI: 1.8750486412929213
+AUC: {'A': 0.8571428571428571, 'C': 0.9074074074074073, 'B': 0.8727272727272727, 'F': 0.9818181818181818}
+
+trial: 1
+time: 2020-02-20 16:11:06.931383
+time elapse: 0:00:05.594118
+features: [u'hasdog', u'extracurriculars', u'job', u'studytime', u'age', u'likeskateboarding', u'familyincome', u'extraclasses']
+accuracytest: 0.56
+accuracyTrain: 0.84
+accuracyValidation: 0.63
+MI: 1.8750486412929213
+AUC: {'A': 0.8127413127413128, 'C': 0.8092592592592592, 'B': 0.8340909090909091, 'F': 0.9227272727272726}
+
+trial: 2
+time: 2020-02-20 16:11:14.318921
+time elapse: 0:00:07.387538
+features: [u'hasdog', u'extracurriculars', u'job', u'studytime', u'age']
+accuracytest: 0.44
+accuracyTrain: 0.63
+accuracyValidation: 0.59
+MI: 1.8088218556227882
+AUC: {'A': 0.8243243243243243, 'C': 0.7277777777777777, 'B': 0.825, 'F': 0.6909090909090909}
+

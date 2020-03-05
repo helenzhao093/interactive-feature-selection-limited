@@ -1,0 +1,110 @@
+trial: 0
+time: 2020-03-04 04:02:05.683474
+time elapse: 5 days, 23:10:50.908285
+features: [u'studytime', u'extraclasses', u'familysupport', u'scholarship', u'college']
+accuracytest: 0.53
+accuracyTrain: 0.76
+accuracyValidation: 0.63
+MI: 1.7913779174131277
+AUC: {'A': 0.9326923076923077, 'C': 0.9258928571428572, 'B': 0.8162393162393162, 'F': 0.8659090909090909}
+
+trial: 1
+time: 2020-03-04 04:03:44.480932
+time elapse: 0:01:38.797458
+features: [u'studytime', u'familysupport', u'job', u'scholarship', u'extracurriculars']
+accuracytest: 0.43
+accuracyTrain: 0.53
+accuracyValidation: 0.63
+MI: 1.8904545086840123
+AUC: {'A': 0.7702991452991452, 'C': 0.7392857142857143, 'B': 0.7713675213675213, 'F': 0.8806818181818181}
+
+trial: 2
+time: 2020-03-04 04:04:14.413834
+time elapse: 0:00:29.932902
+features: [u'studytime', u'familysupport', u'college', u'extracurriculars', u'extraclasses']
+accuracytest: 0.59
+accuracyTrain: 0.69
+accuracyValidation: 0.67
+MI: 1.840560940466198
+AUC: {'A': 0.8963675213675214, 'C': 0.9696428571428571, 'B': 0.8728632478632479, 'F': 0.884090909090909}
+
+trial: 3
+time: 2020-03-04 04:05:06.697674
+time elapse: 0:00:52.283840
+features: [u'studytime', u'familysupport', u'scholarship', u'extraclasses', u'age']
+accuracytest: 0.41
+accuracyTrain: 0.53
+accuracyValidation: 0.52
+MI: 1.875048641292921
+AUC: {'A': 0.6228632478632479, 'C': 0.6589285714285714, 'B': 0.7617521367521367, 'F': 0.8727272727272728}
+
+trial: 4
+time: 2020-03-04 04:05:36.803526
+time elapse: 0:00:30.105852
+features: [u'studytime', u'familysupport', u'scholarship', u'extraclasses', u'age', u'college', u'extracurriculars']
+accuracytest: 0.55
+accuracyTrain: 0.69
+accuracyValidation: 0.64
+MI: 1.8904545086840123
+AUC: {'A': 0.8696581196581197, 'C': 0.9482142857142857, 'B': 0.8183760683760684, 'F': 0.8727272727272727}
+
+trial: 5
+time: 2020-03-04 04:05:53.749348
+time elapse: 0:00:16.945822
+features: [u'studytime', u'scholarship', u'extraclasses', u'college', u'extracurriculars']
+accuracytest: 0.58
+accuracyTrain: 0.67
+accuracyValidation: 0.67
+MI: 1.875048641292921
+AUC: {'A': 0.8739316239316239, 'C': 0.9214285714285714, 'B': 0.8162393162393163, 'F': 0.8568181818181817}
+
+trial: 6
+time: 2020-03-04 04:06:14.410658
+time elapse: 0:00:20.661310
+features: [u'studytime', u'familysupport', u'extraclasses', u'college', u'extracurriculars']
+accuracytest: 0.59
+accuracyTrain: 0.69
+accuracyValidation: 0.67
+MI: 1.7843387465444944
+AUC: {'A': 0.8963675213675214, 'C': 0.9696428571428571, 'B': 0.8728632478632479, 'F': 0.884090909090909}
+
+trial: 7
+time: 2020-03-04 04:06:32.179657
+time elapse: 0:00:17.768999
+features: [u'studytime', u'familysupport', u'extraclasses', u'college', u'extracurriculars', u'scholarship']
+accuracytest: 0.54
+accuracyTrain: 0.65
+accuracyValidation: 0.67
+MI: 1.8251550730751065
+AUC: {'A': 0.8846153846153847, 'C': 0.9500000000000001, 'B': 0.8183760683760684, 'F': 0.8704545454545455}
+
+trial: 8
+time: 2020-03-04 04:06:39.434600
+time elapse: 0:00:07.254943
+features: [u'studytime', u'familysupport', u'extraclasses', u'college', u'extracurriculars', u'job']
+accuracytest: 0.57
+accuracyTrain: 0.73
+accuracyValidation: 0.67
+MI: 1.8904545086840119
+AUC: {'A': 0.9188034188034188, 'C': 0.975, 'B': 0.8685897435897436, 'F': 0.8875000000000001}
+
+trial: 9
+time: 2020-03-04 04:06:48.673992
+time elapse: 0:00:09.239392
+features: [u'studytime', u'familysupport', u'extraclasses', u'college', u'extracurriculars', u'job', u'brownhair']
+accuracytest: 0.56
+accuracyTrain: 0.71
+accuracyValidation: 0.67
+MI: 1.8904545086840119
+AUC: {'A': 0.9230769230769231, 'C': 0.975, 'B': 0.8685897435897436, 'F': 0.8875000000000001}
+
+trial: 10
+time: 2020-03-04 04:07:03.212352
+time elapse: 0:00:14.538360
+features: [u'studytime', u'familysupport', u'extraclasses', u'college', u'extracurriculars', u'job', u'age']
+accuracytest: 0.56
+accuracyTrain: 0.73
+accuracyValidation: 0.67
+MI: 1.9312708352146244
+AUC: {'A': 0.9017094017094017, 'C': 0.9678571428571429, 'B': 0.861111111111111, 'F': 0.8886363636363636}
+
